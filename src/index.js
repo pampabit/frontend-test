@@ -1,14 +1,24 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux';
-import App from './App';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Layout from './components/Layout/Index';
+import Home from './components/Home/Index';
 import reportWebVitals from './reportWebVitals';
 import store from './app/store';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './App.scss';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <Provider store={store}>
-    <App />
+    <Router>
+      <Layout>
+        <Routes>
+          <Route exact path="/" element={<Home />} />
+        </Routes>
+      </Layout>
+    </Router>
   </Provider>,
 );
 
