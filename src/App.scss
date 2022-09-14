@@ -9,7 +9,10 @@ $color: #0000ff;
   border: none;
   cursor: pointer;
 }
-
+.product-card a {
+  text-decoration: none;
+  color: #000;
+}
 .card.listing {
   border-bottom: 1px #d1d1d1 solid;
   padding-bottom: 32px;
@@ -41,4 +44,11 @@ $color: #0000ff;
   border: 1px #000 solid;
   padding: 4px 8px;
   line-height: 32px;
+}
+
+.product-title {
+  margin-bottom: 32px;
+}
+.product-description .row:nth-child(even) {
+  background: #f1f1f1;
 }

@@ -15,7 +15,7 @@ const Home = () => {
   const [viewMode, setViewMode] = useState('grid');
 
   useEffect(() => {
-    dispatch(searchProducts()).then(data => console.log(data));
+    dispatch(searchProducts());
     setViewMode('grid');
   }, []);
 
