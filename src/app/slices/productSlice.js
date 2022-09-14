@@ -8,11 +8,16 @@ export const searchProducts = createAsyncThunk(
   },
 );
 
+export const getProduct = createAsyncThunk('product/detail', async id => {
+  return product.getById(id);
+});
+
 export const productSlice = createSlice({
   name: 'product',
   initialState: {
     value: [],
     rawProducts: [],
+    productDetail: null,
   },
   reducers: {
     filterProducts: (state, action) => {
@@ -48,11 +53,29 @@ export const productSlice = createSlice({
         value: action.payload,
       };
     },
-
     [searchProducts.rejected]: state => {
       return {
         ...state,
-        value: 'rejected',
+        status: 'rejected',
+      };
+    },
+    [getProduct.pending]: state => {
+      return {
+        ...state,
+        status: 'loading',
+      };
+    },
+    [getProduct.fulfilled]: (state, action) => {
+      return {
+        ...state,
+        status: 'succeeded',
+        productDetail: action.payload,
+      };
+    },
+    [getProduct.rejected]: state => {
+      return {
+        ...state,
+        status: 'rejected',
       };
     },
   },
@@ -60,7 +83,7 @@ export const productSlice = createSlice({
 
 export const totalProducts = state => state.product.value.length || 0;
 export const allProducts = state => state.product.value;
-// Action creators are generated for each case reducer function
+export const productDetail = state => state.product.productDetail;
 export const { filterProducts } = productSlice.actions;
 
 export default productSlice.reducer;
